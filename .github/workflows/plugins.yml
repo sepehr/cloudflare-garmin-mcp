@@ -1,0 +1,55 @@
+name: Plugin release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing release tag (must match the package version)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: plugin-release-${{ github.event.release.tag_name || inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+      WRANGLER_WRITE_LOGS: 'false'
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: refs/tags/${{ github.event.release.tag_name || inputs.tag }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Check release version
+        run: |
+          python3 - <<'PY'
+          import json, os
+          version = json.load(open('package.json'))['version']
+          if os.environ['RELEASE_TAG'] != 'v' + version:
+              raise SystemExit('Release tag must match v plus the package version.')
+          PY
+      - run: npm ci
+      - run: npm run check
+      - run: npm test
+      - run: npm run package:plugins
+      - name: Attach plugin archives
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release upload "$RELEASE_TAG" dist/plugins/garmin-chatgpt.zip dist/plugins/garmin-claude.zip dist/plugins/SHA256SUMS --clobber

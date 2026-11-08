@@ -37,6 +37,9 @@ custom connectors. Never paste credentials into a chat.
 
 Try: “Summarize my activities and sleep for the last seven days.”
 
+Prefer plugin uploads? Download the [release ZIPs](https://github.com/sepehr/cloudflare-garmin-mcp/releases/latest)
+for ChatGPT and Claude. They are templates: [set your Worker URL before import](plugins/README.md).
+
 ## Updates and limits
 
 To update code, pull changes, run `npm ci`, then
