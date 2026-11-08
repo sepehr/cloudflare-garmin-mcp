@@ -1,0 +1,10 @@
+:root { color-scheme: light dark; font: 18px/1.6 system-ui, sans-serif; }
+body { margin: 0; }
+main { max-width: 720px; margin: 4rem auto; padding: 0 1.5rem; }
+label { display: block; font-weight: 600; }
+input { box-sizing: border-box; width: 100%; margin: .5rem 0 1rem; padding: .8rem; font: inherit; }
+button, .buttons a { display: inline-block; padding: .7rem 1rem; border: 0; border-radius: .4rem; background: #1255c8; color: white; font: inherit; text-decoration: none; cursor: pointer; }
+.buttons a { margin: .25rem .4rem .25rem 0; }
+#error { color: #cf3434; }
+#configured-url { overflow-wrap: anywhere; }
+@media (max-width: 600px) { main { margin: 1.5rem auto; } }

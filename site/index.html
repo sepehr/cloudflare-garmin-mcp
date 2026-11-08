@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'">
+  <title>Connect Garmin MCP</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="install.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Connect Garmin MCP</h1>
+    <p>Deploy your own Garmin Worker first, then enter its MCP URL to create install buttons for desktop clients.</p>
+    <form id="install-form">
+      <label for="endpoint">Your Garmin MCP URL</label>
+      <input id="endpoint" type="url" required maxlength="2048" placeholder="https://YOUR-WORKER.YOUR-SUBDOMAIN.workers.dev/mcp" autocomplete="off" spellcheck="false">
+      <button type="submit">Create install buttons</button>
+    </form>
+    <p id="error" role="alert"></p>
+    <section id="result" hidden aria-live="polite">
+      <h2>Choose your desktop client</h2>
+      <p id="configured-url"></p>
+      <p class="buttons"><a id="vscode" rel="noreferrer">Add to VS Code</a> <a id="cursor" rel="noreferrer">Add to Cursor</a></p>
+      <p>The app must be installed. Review the configuration, then complete OAuth in your browser using your separate owner access code.</p>
+    </section>
+    <p>Enter only the server URL. Never enter a password, token, or access code here. The URL is processed in this browser; this page does not save it or contact your server.</p>
+    <p>For TypingMind, Claude, or ChatGPT, add the same URL through the client's custom MCP settings. Workspace permissions still apply.</p>
+    <p><a href="https://github.com/sepehr/cloudflare-garmin-mcp#connect" rel="noreferrer">Setup instructions and source</a></p>
+  </main>
+</body>
+</html>

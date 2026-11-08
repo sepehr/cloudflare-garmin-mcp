@@ -29,6 +29,13 @@ Your Garmin password is sent only to Garmin, never to Cloudflare.
 
 ## Connect
 
+[![Add to VS Code](https://img.shields.io/badge/Add_to-VS_Code-007ACC)](https://sepehr.github.io/cloudflare-garmin-mcp/)
+[![Add to Cursor](https://img.shields.io/badge/Add_to-Cursor-111111)](https://sepehr.github.io/cloudflare-garmin-mcp/)
+
+After deployment, open either button, enter your own `/mcp` URL once, then
+choose the installed desktop app. It asks you to review the connection and
+complete OAuth. The page creates links locally and handles no credentials.
+
 Add `https://YOUR-WORKER.YOUR-SUBDOMAIN.workers.dev/mcp` as a remote MCP server
 with OAuth in your client. In Claude, use **Customize → Connectors → Add custom
 connector**. Approve the browser consent with your **owner access code**, not
