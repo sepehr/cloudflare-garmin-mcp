@@ -1,0 +1,10 @@
+node_modules/
+.wrangler/
+.dev.vars*
+!.dev.vars.example
+.env*
+dist/
+*.sensitive
+wrangler.local.jsonc
+*.zip
+__pycache__/

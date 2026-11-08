@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "garmin",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-08",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": { "enabled": false },
+  "vars": { "PUBLIC_ORIGIN": "" },
+  "secrets": { "required": ["GARMIN_SESSION", "GARMIN_ENCRYPTION_KEY", "OWNER_ACCESS_HASH"] },
+  "kv_namespaces": [{ "binding": "OAUTH_KV" }],
+  "durable_objects": { "bindings": [{ "name": "GARMIN_ACCOUNT", "class_name": "GarminAccount" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["GarminAccount"] }]
+}

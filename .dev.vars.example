@@ -1,0 +1,4 @@
+# Deployment prompts for these as Cloudflare Secrets. Never put real values here.
+GARMIN_SESSION=
+GARMIN_ENCRYPTION_KEY=
+OWNER_ACCESS_HASH=
