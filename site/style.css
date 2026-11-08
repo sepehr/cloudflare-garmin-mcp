@@ -1,10 +1,57 @@
-:root { color-scheme: light dark; font: 18px/1.6 system-ui, sans-serif; }
+:root {
+  color-scheme: light dark;
+  font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --background: #f7f8f5;
+  --surface: #ffffff;
+  --text: #222b29;
+  --muted: #616b67;
+  --border: #dce2dc;
+  --input-border: #83918a;
+  --accent: #34715b;
+  --button: #263d33;
+  --button-hover: #345343;
+  --on-button: #ffffff;
+  --error: #aa3434;
+  background: var(--background);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+* { box-sizing: border-box; }
 body { margin: 0; }
-main { max-width: 720px; margin: 4rem auto; padding: 0 1.5rem; }
-label { display: block; font-weight: 600; }
-input { box-sizing: border-box; width: 100%; margin: .5rem 0 1rem; padding: .8rem; font: inherit; }
-button, .buttons a { display: inline-block; padding: .7rem 1rem; border: 0; border-radius: .4rem; background: #1255c8; color: white; font: inherit; text-decoration: none; cursor: pointer; }
-.buttons a { margin: .25rem .4rem .25rem 0; }
-#error { color: #cf3434; }
-#configured-url { overflow-wrap: anywhere; }
-@media (max-width: 600px) { main { margin: 1.5rem auto; } }
+main { max-width: 640px; margin: clamp(3rem, 10vh, 7rem) auto; padding: 0 1.5rem; }
+header { margin-bottom: 2rem; }
+.eyebrow { display: flex; align-items: center; gap: .6rem; margin: 0 0 1.2rem; color: var(--muted); font-size: .75rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; }
+.status-dot { width: 6px; height: 6px; flex: 0 0 auto; border-radius: 50%; background: var(--accent); }
+h1 { margin: 0 0 1rem; font-size: clamp(2rem, 5.5vw, 2.8rem); line-height: 1.15; letter-spacing: -.055em; font-weight: 650; }
+.accent { color: var(--accent); }
+.intro { margin: 0; color: var(--muted); font-size: 1.05rem; line-height: 1.75; }
+form { padding: 1.5rem; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); box-shadow: 0 12px 36px -28px #24392c40; }
+label { display: block; margin-bottom: .6rem; font-size: .875rem; font-weight: 600; }
+input { width: 100%; min-height: 50px; margin-bottom: 1rem; padding: .8rem .9rem; border: 1px solid var(--input-border); border-radius: 8px; background: var(--background); color: var(--text); font: .85rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; }
+input::placeholder { color: var(--muted); opacity: 1; }
+button, .buttons a { min-height: 48px; padding: .75rem 1rem; border: 1px solid transparent; border-radius: 8px; background: var(--button); color: var(--on-button); font-family: inherit; font-size: .875rem; font-weight: 600; line-height: 1.5; text-decoration: none; cursor: pointer; }
+button { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+button span { font-size: 1.15rem; font-weight: 400; }
+button:hover, .buttons a:hover { background: var(--button-hover); }
+:is(input, button, a):focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+#error { margin: .6rem 0 0; color: var(--error); font-size: .875rem; }
+#error:empty { display: none; }
+#result { margin-top: 1.5rem; padding: 1.5rem; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); }
+h2 { margin: 0; font-size: 1rem; font-weight: 600; letter-spacing: -.015em; }
+#configured-url { margin: .5rem 0 1rem; overflow-wrap: anywhere; color: var(--muted); font: .8rem/1.7 ui-monospace, SFMono-Regular, Consolas, monospace; }
+.buttons { display: flex; flex-wrap: wrap; gap: .6rem; margin: 0; }
+.buttons a { display: inline-flex; justify-content: center; align-items: center; flex: 1 1 auto; }
+#result > p:last-child { margin: 1rem 0 0; color: var(--muted); font-size: .8rem; }
+.notes { margin: 1.5rem .2rem 0; color: var(--muted); font-size: .8rem; line-height: 1.8; }
+.notes p { margin: 0 0 .8rem; }
+footer { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: .8rem; }
+footer a { color: var(--text); text-decoration-color: var(--border); text-underline-offset: .25em; }
+footer a:hover { text-decoration-color: var(--accent); }
+@media (prefers-color-scheme: dark) {
+  :root { --background: #151b18; --surface: #1c2420; --text: #e9eee8; --muted: #a1afa5; --border: #354239; --input-border: #75867b; --accent: #91bba0; --button: #c3ddca; --button-hover: #d5e9da; --on-button: #1c3324; --error: #f29b95; }
+}
+@media (max-width: 480px) {
+  main { margin: 2.5rem auto; padding: 0 1.15rem; }
+  form, #result { padding: 1.15rem; border-radius: 12px; }
+  .intro { font-size: .95rem; }
+}
